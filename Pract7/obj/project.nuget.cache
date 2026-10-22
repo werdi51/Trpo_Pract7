@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "tecImcDlCADX4elHVCjgEFHd3R+OI6x2G24aeOGX/euiJ/wNsVb3K8NtNm8JXlyUbsA5SLaQXPnpWa4lP6pVyg==",
+  "dgSpecHash": "SUMucEwDU2c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\st310-03\\Desktop\\Хворенков\\7\\Pract7\\Pract7.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\anton\\Desktop\\трпо\\Trpo_Pract7\\Pract7\\Pract7.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\anton\\.nuget\\packages\\materialdesigncolors\\5.4.0\\materialdesigncolors.5.4.0.nupkg.sha512",
+    "C:\\Users\\anton\\.nuget\\packages\\materialdesignthemes\\5.4.0\\materialdesignthemes.5.4.0.nupkg.sha512",
+    "C:\\Users\\anton\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.142\\microsoft.xaml.behaviors.wpf.1.1.142.nupkg.sha512"
+  ],
   "logs": []
 }

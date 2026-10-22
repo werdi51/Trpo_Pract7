@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hvorenkov_Trpo_6_Var_22.Models;
+namespace Pract7.Model;
 
 public partial class Furniture
 {
