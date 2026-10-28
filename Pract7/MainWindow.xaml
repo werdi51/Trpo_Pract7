@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Pract7"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Furniture Client" Height="600" Width="1000"
-        Background="#eeeeee">
+        Title="Fura" Height="600" Width="1000"
+        Background="LightGray">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -15,20 +15,21 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBox Width="150" Margin="0,0,5,0" materialDesign:HintAssist.Hint="material"
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBox Width="150" Margin="5" 
                      Text="{Binding FilterMaterial, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Width="100" Margin="0,0,5,0" materialDesign:HintAssist.Hint="maxPrice"
+            <TextBox Width="100" Margin="5" 
                      Text="{Binding FilterMaxPrice, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Content="Найти" Click="LoadClick" Margin="0,0,5,0"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+            <Button Content="Найти" Click="LoadClick" Margin="5"
+                     />
         </StackPanel>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Margin="0,0,0,10">
+        <ListView Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
+                  MouseDoubleClick="ListDoubleClick" Margin="10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Название" Width="180" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Навание" Width="180" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Материал" Width="120" DisplayMemberBinding="{Binding Material}" />
                     <GridViewColumn Header="Цена" Width="80" DisplayMemberBinding="{Binding Price}" />
                     <GridViewColumn Header="Кол-во" Width="60" DisplayMemberBinding="{Binding Quantity}" />
@@ -38,28 +39,13 @@
         </ListView>
 
         <StackPanel Grid.Row="2">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBox Width="180" Margin="0,0,5,0" materialDesign:HintAssist.Hint="Название"
-                         Text="{Binding SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox Width="120" Margin="0,0,5,0" materialDesign:HintAssist.Hint="Материал"
-                         Text="{Binding SelectedItem.Material, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox Width="80" Margin="0,0,5,0" materialDesign:HintAssist.Hint="Цена"
-                         Text="{Binding SelectedItem.Price, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox Width="70" Margin="0,0,5,0" materialDesign:HintAssist.Hint="Количество"
-                         Text="{Binding SelectedItem.Quantity, UpdateSourceTrigger=PropertyChanged}" />
-                <CheckBox Content="В наличии" VerticalAlignment="Center" Margin="0,0,10,0"
-                          IsChecked="{Binding SelectedItem.IsAvailable}" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Button Content="Создать" Click="CreateClick" Margin="0,0,5,0"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
-                <Button Content="Сохранить" Click="SaveClick" Margin="0,0,5,0"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
-                <Button Content="PATCH" Click="PatchClick" Margin="0,0,5,0"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
-                <Button Content="Удалить" Click="DeleteClick" Margin="0,0,5,0"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button Content="Создать" Click="CreateClick" Margin="5"
+                        />
+                <Button Content="Изменить" Click="EditClick" Margin="5"
+                        />
+                <Button Content="Удалить" Click="DeleteClick" Margin="5"
+                        />
             </StackPanel>
 
             <TextBlock Text="{Binding Status}" TextWrapping="Wrap" />

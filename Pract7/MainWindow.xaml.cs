@@ -53,11 +53,16 @@ namespace Pract7
 
             DataContext = this;
 
-            client.BaseAddress = new Uri("https://localhost:7038/api/");
+            client.BaseAddress = new Uri("https://localhost:7003/api/v1/");
 
             client.Timeout = TimeSpan.FromSeconds(10);
 
-            _ = LoadAsync();
+            LoadOnStartup();
+        }
+
+        private async void LoadOnStartup()
+        {
+            await LoadAsync();
         }
 
 
@@ -68,77 +73,46 @@ namespace Pract7
             await LoadAsync();
         }
 
-        private void CreateClick(object sender, RoutedEventArgs e)
+        private async void CreateClick(object sender, RoutedEventArgs e)
         {
-            SelectedItem = new Furniture(); 
-
-            Status = "Заполните поля и нажмите Сохранить";
+            await OpenEditorAsync(null);
         }
 
-        private async void SaveClick(object sender, RoutedEventArgs e)
+        private async void EditClick(object sender, RoutedEventArgs e)
         {
-            var item = SelectedItem;
-
-            if (item == null) 
+            if (SelectedItem == null)
             {
-                Status = "Нет выбранной записи"; return; 
+                Status = "Выберите запись в списке";
+                return;
             }
+
+            await OpenEditorAsync(SelectedItem);
+        }
+
+        private async void ListDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedItem != null)
+            {
+                await OpenEditorAsync(SelectedItem);
+            }
+        }
+
+        private async Task OpenEditorAsync(Furniture? item)
+        {
             try
             {
-                if (item.Id == 0) 
+                var dialog = new CreateOrEdit(client, item) { Owner = this };
+
+                if (dialog.ShowDialog() == true)
                 {
-                    HttpResponseMessage response = await client.PostAsJsonAsync("furniture", item);
-
-                    response.EnsureSuccessStatusCode();
-
-                    var created = await response.Content.ReadFromJsonAsync<Furniture>();
-
-                    if (created != null)
-                    {
-                        Items.Add(created);
-                    }
-                    Status = "Запись создана";
-                }
-                else
-                {
-                    HttpResponseMessage response = await client.PutAsJsonAsync($"furniture/{item.Id}", item);
-
-                    response.EnsureSuccessStatusCode();
-
-                    Status = "Изменения сохранены puut";
-
                     await LoadAsync();
+
+                    Status = item == null ? "Запись создана" : "Изменения сохранены";
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                ShowError(ex); 
-            }
-        }
-
-        private async void PatchClick(object sender, RoutedEventArgs e)
-        {
-            var item = SelectedItem;
-
-            if (item == null || item.Id == 0) 
-            { 
-                Status = "Выберите существующую запись"; return; 
-            }
-            try
-            {
-                HttpResponseMessage response = await client.PatchAsJsonAsync(
-                    $"furniture/{item.Id}",
-                    new { item.Name, item.Price });
-
-                response.EnsureSuccessStatusCode();
-
-                Status = "Частичное изменение выполнено PATCH";
-
-                await LoadAsync();
-            }
-            catch (Exception ex) 
-            {
-                ShowError(ex); 
+                Status = "Ошибка окна: " + ex.Message;
             }
         }
 
@@ -160,7 +134,7 @@ namespace Pract7
 
                 SelectedItem = null;
 
-                Status = "Запись у";
+                Status = "Запись удалена";
             }
             catch (Exception ex) 
             {
@@ -215,9 +189,14 @@ namespace Pract7
 
         private void ShowError(Exception ex)
         {
-            if (ex is HttpRequestException)
+            if (ex is HttpRequestException http && http.StatusCode.HasValue)
             {
-                Status = "Сервер недоступе";
+                Status = "Сервер вернул ошибку " + (int)http.StatusCode.Value +
+                         " (" + http.StatusCode.Value + ")";
+            }
+            else if (ex is HttpRequestException)
+            {
+                Status = "Сервер недоступен";
             }
             else if (ex is TaskCanceledException)
             {

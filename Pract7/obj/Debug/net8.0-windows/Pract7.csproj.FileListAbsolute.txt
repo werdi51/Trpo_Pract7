@@ -46,3 +46,5 @@ C:\Users\anton\Desktop\трпо\Trpo_Pract7\Pract7\obj\Debug\net8.0-windows\refi
 C:\Users\anton\Desktop\трпо\Trpo_Pract7\Pract7\obj\Debug\net8.0-windows\Pract7.pdb
 C:\Users\anton\Desktop\трпо\Trpo_Pract7\Pract7\obj\Debug\net8.0-windows\Pract7.genruntimeconfig.cache
 C:\Users\anton\Desktop\трпо\Trpo_Pract7\Pract7\obj\Debug\net8.0-windows\ref\Pract7.dll
+C:\Users\anton\Desktop\трпо\Trpo_Pract7\Pract7\obj\Debug\net8.0-windows\CreateOrEdit.baml
+C:\Users\anton\Desktop\трпо\Trpo_Pract7\Pract7\obj\Debug\net8.0-windows\CreateOrEdit.g.cs
