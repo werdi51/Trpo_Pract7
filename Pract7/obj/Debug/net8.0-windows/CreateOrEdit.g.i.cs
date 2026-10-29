@@ -52,7 +52,7 @@ namespace Pract7 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Pract7;component/createoredit.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Pract7;V1.0.0.0;component/createoredit.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\CreateOrEdit.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

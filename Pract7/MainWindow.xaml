@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pract7"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Fura" Height="600" Width="1000"
         Background="LightGray">
@@ -28,12 +27,12 @@
                   MouseDoubleClick="ListDoubleClick" Margin="10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Навание" Width="180" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Материал" Width="120" DisplayMemberBinding="{Binding Material}" />
-                    <GridViewColumn Header="Цена" Width="80" DisplayMemberBinding="{Binding Price}" />
-                    <GridViewColumn Header="Кол-во" Width="60" DisplayMemberBinding="{Binding Quantity}" />
-                    <GridViewColumn Header="Наличие" Width="70" DisplayMemberBinding="{Binding IsAvailable}" />
+                    <GridViewColumn  Width="40" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn  Width="180" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Material}" />
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Price}" />
+                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding Quantity}" />
+                    <GridViewColumn  Width="70" DisplayMemberBinding="{Binding IsAvailable}" />
                 </GridView>
             </ListView.View>
         </ListView>

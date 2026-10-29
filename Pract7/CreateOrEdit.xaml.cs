@@ -10,11 +10,6 @@ using System.Windows;
 
 namespace Pract7
 {
-    /// <summary>
-    /// Окно создания и изменения записи.
-    /// Новая запись (item == null) сохраняется через POST, существующая — через PUT,
-    /// кнопка PATCH отправляет только изменённые поля.
-    /// </summary>
     public partial class CreateOrEdit : Window, INotifyPropertyChanged
     {
         private readonly HttpClient client;
@@ -25,7 +20,6 @@ namespace Pract7
         public Furniture Item { get; }
 
 
-        public Visibility PatchVisibility => isNew ? Visibility.Collapsed : Visibility.Visible;
 
         private string status = "";
         public string Status
@@ -47,16 +41,16 @@ namespace Pract7
             DataContext = this;
         }
 
-        private static Furniture Clone(Furniture? source) => source == null
+        private static Furniture Clone(Furniture? inside) => inside == null
             ? new Furniture()
             : new Furniture
             {
-                Id = source.Id,
-                Name = source.Name,
-                Material = source.Material,
-                Price = source.Price,
-                Quantity = source.Quantity,
-                IsAvailable = source.IsAvailable
+                Id = inside.Id,
+                Name = inside.Name,
+                Material = inside.Material,
+                Price = inside.Price,
+                Quantity = inside.Quantity,
+                IsAvailable = inside.IsAvailable
             };
 
         private async void SaveClick(object sender, RoutedEventArgs e)

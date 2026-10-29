@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace Pract7
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
 
@@ -99,7 +96,7 @@ namespace Pract7
 
         private async Task OpenEditorAsync(Furniture? item)
         {
-            try
+            
             {
                 var dialog = new CreateOrEdit(client, item) { Owner = this };
 
@@ -110,10 +107,7 @@ namespace Pract7
                     Status = item == null ? "Запись создана" : "Изменения сохранены";
                 }
             }
-            catch (Exception ex)
-            {
-                Status = "Ошибка окна: " + ex.Message;
-            }
+
         }
 
         private async void DeleteClick(object sender, RoutedEventArgs e)
@@ -124,7 +118,7 @@ namespace Pract7
             {
                 Status = "Нет выбранной записи."; return; 
             }
-            try
+            
             {
                 HttpResponseMessage response = await client.DeleteAsync($"furniture/{item.Id}");
 
@@ -136,17 +130,14 @@ namespace Pract7
 
                 Status = "Запись удалена";
             }
-            catch (Exception ex) 
-            {
-                ShowError(ex); 
-            }
+            
         }
 
 
 
         private async Task LoadAsync()
         {
-            try
+            
             {
                 string rFu = "furniture";
 
@@ -184,7 +175,6 @@ namespace Pract7
 
                 Status = "Загружено " + Items.Count;
             }
-            catch (Exception ex) { ShowError(ex); }
         }
 
         private void ShowError(Exception ex)
